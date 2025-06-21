@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Monitor - Extensão Chrome</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 0;
+            color: white;
+        }
+
+        .logo {
+            width: 128px;
+            height: 128px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .logo img {
+            width: 80px;
+            height: 80px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .installation {
+            background: #e3f2fd;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .installation h2 {
+            color: #1976d2;
+            margin-bottom: 20px;
+        }
+
+        .installation ol {
+            margin-left: 20px;
+        }
+
+        .installation li {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: white;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .screenshot {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .screenshot img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .main-content {
+                padding: 20px;
+                margin: 20px 0;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="icon128.png" alt="Request Monitor Logo">
+            </div>
+            <h1>Request Monitor</h1>
+            <p class="subtitle">Monitore requisições HTTP em tempo real com notificações sonoras</p>
+            <a href="#instalacao" class="cta-button">Instalar Agora</a>
+        </header>
+
+        <div class="main-content">
+            <section class="screenshot">
+                <img src="apresentation.png" alt="Screenshot da extensão Request Monitor">
+            </section>
+
+            <section class="features">
+                <div class="feature">
+                    <div class="feature-icon">🔊</div>
+                    <h3>Notificações Sonoras</h3>
+                    <p>Receba alertas sonoros quando suas requisições HTTP forem completadas, permitindo trabalhar em outras tarefas sem perder o foco.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Monitoramento em Tempo Real</h3>
+                    <p>Acompanhe o status das requisições em tempo real com contadores de requisições pendentes e estatísticas detalhadas.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Suporte Multilíngue</h3>
+                    <p>Interface disponível em português e inglês, com fácil alternância entre idiomas nas configurações.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Configurações Personalizáveis</h3>
+                    <p>Ajuste a duração mínima para notificações, controle o volume do som e personalize a experiência conforme suas necessidades.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacidade Garantida</h3>
+                    <p>Todos os dados são processados localmente. Nenhuma informação é enviada para servidores externos.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Leve e Eficiente</h3>
+                    <p>Extensão otimizada que não impacta a performance do navegador, ideal para desenvolvedores e testadores.</p>
+                </div>
+            </section>
+
+            <section class="installation" id="instalacao">
+                <h2>Como Instalar</h2>
+                <ol>
+                    <li>Baixe o código fonte da extensão do <a href="https://github.com/seu-usuario/RequestMonitor" target="_blank">repositório GitHub</a></li>
+                    <li>Abra o Chrome e vá para <code>chrome://extensions/</code></li>
+                    <li>Ative o "Modo do desenvolvedor" no canto superior direito</li>
+                    <li>Clique em "Carregar sem compactação" e selecione a pasta da extensão</li>
+                    <li>A extensão será instalada e aparecerá na barra de ferramentas</li>
+                    <li>Clique no ícone da extensão para começar a usar!</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Como Funciona</h2>
+                <p>O Request Monitor utiliza a API de Debugger do Chrome para interceptar requisições de rede em tempo real. Quando uma requisição HTTP é completada e sua duração excede o tempo mínimo configurado, a extensão reproduz um som de notificação para alertar o usuário.</p>
+                
+                <h3>Funcionalidades Principais:</h3>
+                <ul>
+                    <li><strong>Monitoramento Automático:</strong> Detecta automaticamente requisições HTTP/HTTPS</li>
+                    <li><strong>Filtros Inteligentes:</strong> Ignora arquivos estáticos (CSS, JS, imagens) por padrão</li>
+                    <li><strong>Controle por Aba:</strong> Ative/desative o monitoramento individualmente para cada aba</li>
+                    <li><strong>Estatísticas:</strong> Visualize contadores de requisições pendentes e abas monitoradas</li>
+                    <li><strong>Configurações Persistentes:</strong> Suas preferências são salvas automaticamente</li>
+                </ul>
+            </section>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">Política de Privacidade</a>
+                <a href="license.html">Licença</a>
+                <a href="https://github.com/seu-usuario/RequestMonitor" target="_blank">GitHub</a>
+            </div>
+            <p>&copy; 2024 Request Monitor. Desenvolvido com ❤️ para a comunidade de desenvolvedores.</p>
+        </footer>
+    </div>
+</body>
+</html>

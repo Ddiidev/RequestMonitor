@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade - Request Monitor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        h3 {
+            color: #555;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #1976d2;
+            margin: 20px 0;
+        }
+
+        .date {
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-link">← Voltar para a página principal</a>
+            <h1>Política de Privacidade</h1>
+        </header>
+
+        <div class="content">
+            <div class="highlight">
+                <p><strong>Resumo:</strong> A extensão Request Monitor processa todos os dados localmente no seu navegador. Nenhuma informação pessoal ou dados de navegação são coletados, armazenados ou transmitidos para servidores externos.</p>
+            </div>
+
+            <h2>1. Informações Gerais</h2>
+            <p>Esta Política de Privacidade descreve como a extensão Request Monitor ("nós", "nossa" ou "extensão") coleta, usa e protege suas informações quando você utiliza nossa extensão do Chrome.</p>
+
+            <h2>2. Dados Coletados</h2>
+            
+            <h3>2.1 Dados NÃO Coletados</h3>
+            <p>A extensão Request Monitor <strong>NÃO coleta</strong>:</p>
+            <ul>
+                <li>Informações pessoais identificáveis</li>
+                <li>Histórico de navegação</li>
+                <li>URLs visitadas</li>
+                <li>Conteúdo de páginas web</li>
+                <li>Dados de formulários</li>
+                <li>Cookies ou dados de sessão</li>
+                <li>Informações de localização</li>
+                <li>Dados de autenticação</li>
+            </ul>
+
+            <h3>2.2 Dados Processados Localmente</h3>
+            <p>A extensão processa localmente apenas:</p>
+            <ul>
+                <li><strong>Metadados de Requisições HTTP:</strong> Status, duração e tipo de requisições (apenas para fins de monitoramento)</li>
+                <li><strong>Configurações do Usuário:</strong> Duração mínima para notificações, idioma preferido e estado de ativação</li>
+                <li><strong>Estado da Extensão:</strong> Quais abas estão sendo monitoradas e contadores de requisições</li>
+            </ul>
+
+            <h2>3. Como os Dados São Usados</h2>
+            
+            <h3>3.1 Finalidade do Processamento</h3>
+            <p>Os dados processados localmente são utilizados exclusivamente para:</p>
+            <ul>
+                <li>Detectar quando requisições HTTP são completadas</li>
+                <li>Reproduzir notificações sonoras conforme configurado</li>
+                <li>Exibir estatísticas em tempo real na interface da extensão</li>
+                <li>Manter suas preferências de configuração</li>
+            </ul>
+
+            <h3>3.2 Armazenamento Local</h3>
+            <p>As configurações da extensão são armazenadas localmente usando a API <code>chrome.storage.sync</code> do Chrome, que:</p>
+            <ul>
+                <li>Sincroniza suas configurações entre dispositivos logados na mesma conta Google</li>
+                <li>Mantém os dados criptografados</li>
+                <li>Não permite acesso por terceiros</li>
+            </ul>
+
+            <h2>4. Permissões da Extensão</h2>
+            
+            <h3>4.1 Justificativa das Permissões</h3>
+            <p>A extensão solicita as seguintes permissões:</p>
+            <ul>
+                <li><strong>"debugger":</strong> Para interceptar requisições de rede e detectar quando são completadas</li>
+                <li><strong>"activeTab":</strong> Para acessar a aba ativa e reproduzir sons de notificação</li>
+                <li><strong>"storage":</strong> Para salvar suas configurações localmente</li>
+                <li><strong>"tabs":</strong> Para gerenciar o monitoramento por aba</li>
+                <li><strong>"notifications":</strong> Para exibir notificações do sistema (se habilitado)</li>
+                <li><strong>"&lt;all_urls&gt;":</strong> Para funcionar em todos os sites que você visitar</li>
+            </ul>
+
+            <h3>4.2 Uso Responsável das Permissões</h3>
+            <p>Embora a extensão tenha permissão para acessar todos os sites, ela:</p>
+            <ul>
+                <li>NÃO lê o conteúdo das páginas</li>
+                <li>NÃO modifica páginas web</li>
+                <li>NÃO intercepta dados pessoais</li>
+                <li>Usa as permissões apenas para monitorar metadados de requisições HTTP</li>
+            </ul>
+
+            <h2>5. Compartilhamento de Dados</h2>
+            <p>A extensão Request Monitor <strong>NÃO compartilha</strong> nenhum dado com terceiros, pois:</p>
+            <ul>
+                <li>Não coleta dados pessoais</li>
+                <li>Não se conecta a servidores externos</li>
+                <li>Não possui funcionalidades de analytics ou tracking</li>
+                <li>Todo processamento é feito localmente no seu navegador</li>
+            </ul>
+
+            <h2>6. Segurança</h2>
+            <p>A segurança dos seus dados é garantida através de:</p>
+            <ul>
+                <li><strong>Processamento Local:</strong> Todos os dados permanecem no seu dispositivo</li>
+                <li><strong>Código Aberto:</strong> O código fonte está disponível para auditoria pública</li>
+                <li><strong>Sem Conexões Externas:</strong> A extensão não faz requisições para servidores externos</li>
+                <li><strong>Princípio da Menor Permissão:</strong> Usa apenas as permissões mínimas necessárias</li>
+            </ul>
+
+            <h2>7. Seus Direitos</h2>
+            <p>Como usuário, você tem o direito de:</p>
+            <ul>
+                <li><strong>Desinstalar:</strong> Remover a extensão a qualquer momento</li>
+                <li><strong>Configurar:</strong> Ajustar todas as configurações conforme sua preferência</li>
+                <li><strong>Desativar:</strong> Pausar o monitoramento sem desinstalar a extensão</li>
+                <li><strong>Auditar:</strong> Examinar o código fonte no repositório GitHub</li>
+            </ul>
+
+            <h2>8. Alterações nesta Política</h2>
+            <p>Esta Política de Privacidade pode ser atualizada ocasionalmente. Quaisquer alterações serão:</p>
+            <ul>
+                <li>Publicadas nesta página</li>
+                <li>Indicadas pela data de "Última atualização"</li>
+                <li>Comunicadas através de atualizações da extensão, se necessário</li>
+            </ul>
+
+            <h2>9. Contato</h2>
+            <p>Se você tiver dúvidas sobre esta Política de Privacidade ou sobre o funcionamento da extensão, você pode:</p>
+            <ul>
+                <li>Abrir uma issue no <a href="https://github.com/seu-usuario/RequestMonitor" target="_blank">repositório GitHub</a></li>
+                <li>Examinar o código fonte para entender como a extensão funciona</li>
+                <li>Consultar a documentação técnica no README</li>
+            </ul>
+
+            <div class="highlight">
+                <p><strong>Compromisso:</strong> Estamos comprometidos em manter a transparência total sobre como a extensão funciona e em proteger sua privacidade através do processamento exclusivamente local de dados.</p>
+            </div>
+
+            <p class="date">Última atualização: Dezembro de 2024</p>
+        </div>
+    </div>
+</body>
+</html>
