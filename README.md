@@ -1,5 +1,7 @@
 # Request Monitor
 
+![Request Monitor Extension](apresentation.png)
+
 A Chrome extension that monitors HTTP requests in DevTools and provides audio notifications when long-running requests complete.
 
 ## Features

@@ -106,6 +106,20 @@
       color: #666;
     }
 
+    .setting-item select {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      font-size: 12px;
+      background-color: white;
+    }
+
+    .setting-item select:focus {
+      outline: none;
+      border-color: #4CAF50;
+    }
+
     .stats {
       background-color: #f9f9f9;
       padding: 10px;
@@ -124,46 +138,54 @@
 </head>
 <body>
   <div class="header">
-    <h1>🔔 Request Monitor</h1>
+    <h1 data-i18n="title">🔔 Request Monitor</h1>
   </div>
 
   <div class="status" id="status">
     <div class="status-indicator" id="statusIndicator"></div>
     <div>
-      <div id="statusText">Carregando...</div>
+      <div id="statusText" data-i18n="status_active">Carregando...</div>
       <div id="pendingCount" style="font-size: 12px; color: #666;"></div>
     </div>
   </div>
 
   <div class="controls">
-    <button class="button button-primary" id="toggleMonitoring">
+    <button class="button button-primary" id="toggleMonitoring" data-i18n="start_monitoring">
       Iniciar Monitoramento
     </button>
-    <button class="button button-secondary" id="toggleEnabled">
+    <button class="button button-secondary" id="toggleEnabled" data-i18n="pause_notifications">
       Pausar Notificações
     </button>
-    <button class="button button-secondary" id="testSound">
+    <button class="button button-secondary" id="testSound" data-i18n="test_sound">
       🔊 Testar Som
     </button>
   </div>
 
   <div class="settings">
     <div class="setting-item">
-      <label for="durationSlider">Duração mínima para notificar:</label>
+      <label for="durationSlider" data-i18n="duration_label">Duração mínima para notificar:</label>
       <input type="range" id="durationSlider" min="1" max="30" value="3" step="1">
       <div class="range-value" id="durationValue">3 segundos</div>
+    </div>
+    <div class="setting-item">
+      <label for="languageSelect" data-i18n="language_label">Idioma:</label>
+      <select id="languageSelect">
+        <option value="pt-BR">Português (Brasil)</option>
+        <option value="en">English</option>
+      </select>
     </div>
   </div>
 
   <div class="stats" id="stats">
-    <div>Requests pendentes: <span id="pendingRequests">0</span></div>
-    <div>Tabs monitoradas: <span id="monitoredTabs">0</span></div>
+    <div data-i18n="pending_requests">Requests pendentes: <span id="pendingRequests">0</span></div>
+    <div data-i18n="monitored_tabs">Tabs monitoradas: <span id="monitoredTabs">0</span></div>
   </div>
 
-  <div class="footer">
+  <div class="footer" data-i18n="footer_text">
     Clique no ícone da extensão para ativar/desativar o monitoramento na aba atual
   </div>
 
+  <script src="i18n.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

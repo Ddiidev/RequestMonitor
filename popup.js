@@ -14,8 +14,11 @@ class PopupController {
   async init() {
     await this.getCurrentTab();
     await this.loadStatus();
+    await this.loadSettings();
+    await i18n.loadLanguage();
     this.setupEventListeners();
     this.updateUI();
+    i18n.updateUI();
   }
 
   async getCurrentTab() {
@@ -34,6 +37,19 @@ class PopupController {
     });
   }
 
+  async loadSettings() {
+    try {
+      const result = await chrome.storage.sync.get(['minDuration']);
+      if (result.minDuration !== undefined) {
+        const seconds = Math.round(result.minDuration / 1000);
+        document.getElementById('durationSlider').value = seconds;
+        document.getElementById('durationValue').textContent = i18n.formatDuration(seconds);
+      }
+    } catch (error) {
+      console.error('Erro ao carregar configurações:', error);
+    }
+  }
+
   setupEventListeners() {
     document.getElementById('toggleMonitoring').addEventListener('click', () => {
       this.toggleMonitoring();
@@ -50,6 +66,13 @@ class PopupController {
     const slider = document.getElementById('durationSlider');
     slider.addEventListener('input', (e) => {
       this.updateMinDuration(parseInt(e.target.value));
+    });
+
+    const languageSelect = document.getElementById('languageSelect');
+    languageSelect.addEventListener('change', async (e) => {
+      await i18n.saveLanguage(e.target.value);
+      i18n.updateUI();
+      this.updateUI();
     });
   }
 
@@ -88,7 +111,7 @@ class PopupController {
     
     const button = document.getElementById('testSound');
     const originalText = button.textContent;
-    button.textContent = '🔊 Tocando...';
+    button.textContent = i18n.t('test_sound_playing');
     button.disabled = true;
     
     setTimeout(() => {
@@ -103,7 +126,7 @@ class PopupController {
       duration: seconds * 1000 
     });
 
-    document.getElementById('durationValue').textContent = `${seconds} segundo${seconds > 1 ? 's' : ''}`;
+    document.getElementById('durationValue').textContent = i18n.formatDuration(seconds);
   }
 
   isTabMonitored() {
@@ -117,29 +140,28 @@ class PopupController {
     
     if (this.status.isEnabled) {
       indicator.className = 'status-indicator active';
-      statusText.textContent = 'Monitoramento ativo';
+      statusText.textContent = i18n.t('status_active');
     } else {
       indicator.className = 'status-indicator inactive';
-      statusText.textContent = 'Notificações pausadas';
+      statusText.textContent = i18n.t('status_inactive');
     }
 
     // Pending count
-    document.getElementById('pendingCount').textContent = 
-      `${this.status.pendingCount} request${this.status.pendingCount !== 1 ? 's' : ''} pendente${this.status.pendingCount !== 1 ? 's' : ''}`;
+    document.getElementById('pendingCount').textContent = i18n.formatPendingCount(this.status.pendingCount);
 
     // Toggle monitoring button
     const toggleBtn = document.getElementById('toggleMonitoring');
     if (this.isTabMonitored()) {
-      toggleBtn.textContent = 'Parar Monitoramento';
+      toggleBtn.textContent = i18n.t('stop_monitoring');
       toggleBtn.className = 'button button-secondary';
     } else {
-      toggleBtn.textContent = 'Iniciar Monitoramento';
+      toggleBtn.textContent = i18n.t('start_monitoring');
       toggleBtn.className = 'button button-primary';
     }
 
     // Toggle enabled button
     const enabledBtn = document.getElementById('toggleEnabled');
-    enabledBtn.textContent = this.status.isEnabled ? 'Pausar Notificações' : 'Reativar Notificações';
+    enabledBtn.textContent = this.status.isEnabled ? i18n.t('pause_notifications') : i18n.t('resume_notifications');
 
     // Stats
     document.getElementById('pendingRequests').textContent = this.status.pendingCount;

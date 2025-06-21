@@ -5,8 +5,35 @@ class RequestMonitor {
     this.attachedTabs = new Set();
     this.isEnabled = true;
     this.minDuration = 3000;
+    this.language = 'pt-BR';
     
+    this.loadSettings();
     this.init();
+  }
+
+  async loadSettings() {
+    try {
+      const result = await chrome.storage.sync.get(['minDuration', 'language']);
+      if (result.minDuration !== undefined) {
+        this.minDuration = result.minDuration;
+      }
+      if (result.language !== undefined) {
+        this.language = result.language;
+      }
+    } catch (error) {
+      console.error('Erro ao carregar configurações:', error);
+    }
+  }
+
+  async saveSettings() {
+    try {
+      await chrome.storage.sync.set({
+        minDuration: this.minDuration,
+        language: this.language
+      });
+    } catch (error) {
+      console.error('Erro ao salvar configurações:', error);
+    }
   }
 
   init() {
@@ -143,8 +170,8 @@ class RequestMonitor {
     chrome.notifications.create({
       type: 'basic',
       iconUrl: 'icon48.png',
-      title: 'Request Completo!',
-      message: `${request.method} ${this.getShortUrl(request.url)}\nDuração: ${(duration / 1000).toFixed(1)}s`
+      title: 'Request Completed!',
+      message: `${request.method} ${this.getShortUrl(request.url)}\nDuration: ${(duration / 1000).toFixed(1)}s`
     });
   }
 
@@ -185,6 +212,9 @@ class RequestMonitor {
           attachedTabs: Array.from(this.attachedTabs)
         });
         break;
+      case 'getMinDuration':
+        sendResponse({ minDuration: this.minDuration });
+        break;
       case 'toggleEnabled':
         this.isEnabled = !this.isEnabled;
         sendResponse({ isEnabled: this.isEnabled });
@@ -195,6 +225,7 @@ class RequestMonitor {
         break;
       case 'setMinDuration':
         this.minDuration = request.duration;
+        this.saveSettings();
         sendResponse({ minDuration: this.minDuration });
         break;
       case 'testSound':
